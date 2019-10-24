@@ -24,7 +24,7 @@ public class ArrayQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T item) {
-        if( end == (start+1)%a.length-1){
+        if( start == (end+1)%a.length){
             grow_array();
         }
         a[end++] = item;
@@ -39,10 +39,9 @@ public class ArrayQueue<T> implements Queue<T> {
     public void grow_array(){
         T[] temp = a;
         a = (T[]) new Object[a.length * 2];
-        System.arraycopy(temp,start,a,0,a.length - start);
-        System.arraycopy(temp,0,a,a.length - start, end);
+        System.arraycopy(temp,start,a,0,temp.length - start);
+        System.arraycopy(temp,0,a,temp.length - start, end);
         start = 0;
-        end = temp.length;
+        end = temp.length - 1;
     }
-
 }

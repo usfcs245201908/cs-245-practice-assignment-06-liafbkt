@@ -45,6 +45,6 @@ public class ArrayStack<T> implements Stack<T> {
     private void grow_array(){
         T[] temp = a;
         a= (T[]) new Object[a.length*2];
-        a = Arrays.copyOfRange(temp, 0 , top);
+        System.arraycopy(temp,0,a,0,top);
     }
 }
